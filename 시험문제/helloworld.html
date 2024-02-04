@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>helloworld</title>
+
+        <!-- <link rel="stylesheet" href="../시험문제/helloworld.css"> -->
+        <style>
+            li{
+                list-style: none;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container {
+                width: 600px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #apply { width: 65px;}
+
+            #width {width: 100px;}
+            #height {width: 100px;}
+            #fntsize {width: 80px;}
+            #fntcolor {width: 150px;}
+            #bgcolor {width: 150px;}
+            #inputtxt {width: 400px;}
+
+            #result {
+                border: 2px solid black;
+                display: flex;
+                justify-content: right;
+                align-items: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <ul>
+                <li>너비 : <input type="number" id="width"> px 
+                    높이 : <input type="number" id="height"> px</li> <br>
+                <li>글자크기 :  <input type="number" id="fntsize"> px 
+                    굵기 : 보통 <input type="radio" name="weight" value="normal" id="normal"> 
+                    굵게 <input type="radio" name="weight" value="bold" id="bold"></li> <br>
+                <li>글자색 : <input type="text" id="fntcolor"> 
+                    배경색 : <input type="text" id="bgcolor"> </li> <br>
+                <li>가로정렬 : 왼쪽 <input type="radio" name="ali" value="left" id="left"> 
+                    가운데 <input type="radio" name="ali" value="cntr" id="cntr"> 
+                    오른쪽 <input type="radio" name="ali" value="right" id="right"></li> <br>
+                <li>세로정렬 : 위 <input type="radio" name="align" value="up" id="up"> 
+                    가운데 <input type="radio" name="align" value="cent" id="cent"> 
+                    아래 <input type="radio" name="align" value="down" id="down"></li> <br>
+                <li>출력 문자열 : <input type="text" id="inputtxt"></li> <br>
+                
+            </ul>
+            <button id="apply">적용하기</button>
+
+        </div>
+
+        <br><br>
+
+        <div id="result"></div>
+
+
+        <script src="../시험문제/helloworld.js">
+            const apply = document.getElementById("apply");
+
+            const width = document.getElementById("width");
+            const height = document.getElementById("height");
+            const fntsize = document.getElementById("fntsize");
+            const fntcolor = document.getElementById("fntcolor");
+            const bgcolor = document.getElementById("bgcolor");
+            const normal = document.getElementById("normal");
+            const bold = document.getElementById("bold");
+            const left = document.getElementById("left");
+            const cntr = document.getElementById("cntr");
+            const right = document.getElementById("right");
+            const up = document.getElementById("up");
+            const down = document.getElementById("down");
+            const cent = document.getElementById("cent");
+            
+            const result = document.getElementById("result");
+
+            
+
+            apply.addEventListener("click", () => {
+                result.style.width = width.value + "px";
+                result.style.height = height.value + "px";
+                result.style.fontSize = fntsize.value + "px";
+                result.style.color = fntcolor.value;
+                result.style.backgroundColor = bgcolor.value;  
+
+                const p = document.createElement("p");
+                p.innerText = inputtxt.value;
+                p.setAttribute("style", inputtxt.getAttribute("style"));
+                result.append(p);        
+
+            });
+
+            const weightList = document.querySelectorAll("weight");
+            // const aliList = document.querySelectorAll("ali");
+            // const alignList = document.querySelectorAll("align"); 
+
+            // document.getElementById('apply').onclick = () => { 
+                
+            //     // var selected = document.querySelector('input[type=radio][weightList[0]]:checked');
+            //     // result.style.fontWeight = normal; 
+            //     // console.log
+            //     // var selected = document.querySelector('input[type=radio][weightList[1]]:checked');
+            //     // result.style.fontWeight = bold; 
+            //     // var selected = document.querySelector('input[type=radio][aliList[0]]:checked');
+            //     // result.style.textAlign = left;
+            //     // var selected = document.querySelector('input[type=radio][aliList[1]]:checked');
+            //     // result.style.textAlign = center;
+            //     // var selected = document.querySelector('input[type=radio][aliList[2]]:checked');
+            //     // result.style.textAlign = right;
+            //     // var selected = document.querySelector('input[type=radio][alignList[0]]:checked');
+            //     // result.style.verticalAlign = up;
+            //     // var selected = document.querySelector('input[type=radio][alignList[1]]:checked');
+            //     // result.style.verticalAlign = center;
+            //     // var selected = document.querySelector('input[type=radio][alignList[2]]:checked');
+            //     // result.style.verticalAlign = down;
+
+                
+            // }
+
+            apply.addEventListener("click", ()=>{
+                $("input:radio[name=weight]").click(()=>{
+                    if($("input[name=weight]:checked").val()=="normal"){
+                        result.style.fontWeight = normal; 
+                    } else if($('input[name=weight]:checked').val()=="bold"){
+                        result.style.fontWeight = bold; 
+                    }
+                });
+            });
+
+
+            
+
+        </script>
+    </body>
+</html>
